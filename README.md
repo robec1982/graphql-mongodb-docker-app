@@ -1,5 +1,5 @@
 # graphql-mongodb-docker-app
-Docker-ready version of the examples studied in GraphQL courses at LinkedIn Learning. This project builds a Docker-based app that hosts a GraphQL app that uses MongoDB to persist data on a Node.js server.
+Docker-ready version of the examples studied in GraphQL courses at LinkedIn Learning. This project builds a Docker-based, Node.js app that works with a GraphQL API. It persists data thorugh a MongoDB database hosted in an independent container. The containerized app is built and launched using **docker-compose**.
 
 ### Setup
 #### 1. Configure environment variables
