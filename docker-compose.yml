@@ -2,16 +2,20 @@ version: "3.8"
 
 services:
   mongodb:
-    image: mongo:5.0.2
+    image: mongo:6.0
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      # - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      # - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      - MONGO_INITDB_DATABASE=$MONGODB_DATABASE
     ports:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
+    networks:
+      - graphql-app
+      
   app:
     depends_on:
       - mongodb
@@ -28,6 +32,12 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
+    networks:
+      - graphql-app
 
 volumes:
   db:
+
+networks:
+  graphql-app:
+    driver: bridge
