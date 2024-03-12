@@ -16,6 +16,21 @@ export const resolvers = {
         }
     },
 
+    getAllProducts: async() => {
+        try {
+            console.log('Requesting all products...');
+            let products = await Widgets.find({});
+            console.log(`${products.length} product(s) found.`);
+            if (products) {
+                return products;
+            }
+            else throw Error(JSON.stringify({ code: 204, message: 'Problem found while retrieving products.' }));
+        } catch (error){
+            console.error(`An error occurred while retrieving the products: ${error}`);
+            return error;
+        }
+    },
+
     createProduct: async ({input}) => {
         try {
             const product = new Widgets({
@@ -62,7 +77,7 @@ export const resolvers = {
             console.log(`Deleting the product with the ID ${id}.`);            
             let product = await Widgets.findOneAndDelete({ _id: id });
             if (product) {
-                console.log(`Product deleted successfully ${product}.`);
+                console.log(`Product deleted successfully: ${product}.`);
                 return product;
             }
             else throw Error(JSON.stringify({ code: 400, message: `Error while deleting the product with ID ${id}.` }));
