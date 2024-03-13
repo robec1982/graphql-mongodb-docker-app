@@ -4,7 +4,7 @@ export const resolvers = {
     getProduct: async({ id }) => {
         try {
             console.log(`Requesting product with ID ${id}.`);
-            let product = await Widgets.findById(id);
+            const product = await Widgets.findById(id);
             console.log(`Product document found ${product}.`);
             if (product) {
                 return product;
