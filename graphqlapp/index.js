@@ -19,4 +19,4 @@ app.use('/graphql', graphqlHTTP({
 })); // Endpoint
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
-app.listen(PORT, (() => console.log(`Running server on http://localhost:${process.env.NODE_LOCAL_PORT}/graphql`)));
+app.listen(PORT, (() => console.log(`Running server on http://localhost:${PORT}/graphql`)));
